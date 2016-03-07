@@ -4,11 +4,12 @@ import time
 import curses
 import sys
 
-ser = serial.Serial(port='/dev/ttyACM3',
-    baudrate=9600,
+ser = serial.Serial(port='/dev/ttyACM0',
+    baudrate=57600,
     )
 if not ser.isOpen():
     ser.open()
+    print "opened serial"
 
 blinkRed = [139, 16, 255, 255]
 blinkGreen = [139, 32, 0, 255]
@@ -21,6 +22,8 @@ def sendToRoomba(integers):
     ser.write(sendString)
     time.sleep(0.1)
 
+print "Enable red"
 sendToRoomba(blinkRed)
 time.sleep(2) # sleep 2 seconds
+print "Enable green"
 sendToRoomba(blinkGreen)
