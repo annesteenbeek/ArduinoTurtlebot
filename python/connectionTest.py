@@ -16,7 +16,7 @@ else:
 blinkRed = [139, 16, 255, 255]
 blinkGreen = [139, 32, 0, 255]
 
-SCI = [128, 132]
+SCI = [128, 130, 132]
 
 #  send variable amount of integers to serialport
 def sendToRoomba(integers):

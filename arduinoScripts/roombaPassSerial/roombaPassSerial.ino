@@ -17,16 +17,13 @@ void setup() {
 void loop() {
   // Send PC data to roomba
   while (Serial.available()>0) {
-    int outData = Serial.read();
-    pinSerial.write(outData); // send received data as binary data to Roomb
-    Serial.print("Send to roomba: ");
-    Serial.println(outData);
+    pinSerial.write(Serial.read()); // send received data as binary data to Roomba
   }
 
   // Send received data back to PC
-  // while (pinSerial.available() > 0) {
-  //   Serial.write(pinSerial.read());
-  // }
+  while (pinSerial.available() > 0) {
+    Serial.write(pinSerial.read());
+  }
 }
 
 void startRoomba(){
@@ -36,5 +33,4 @@ void startRoomba(){
   digitalWrite(ddPin, LOW);
   delay(500);
   digitalWrite(ddPin, HIGH);
-  // delay(2000);
 }

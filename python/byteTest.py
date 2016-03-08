@@ -17,6 +17,7 @@ blinkRed = [139, 16, 255, 255]
 blinkGreen = [139, 32, 0, 255]
 
 SCI = [128, 130, 132]
+requestSensor = [149, 2, 9, 13]
 
 #  send variable amount of integers to serialport
 def sendToRoomba(integers):
@@ -40,7 +41,12 @@ print "enable full control"
 sendToRoomba(SCI)
 time.sleep(1)
 readSerial()
-sendToRoomba(blinkRed)
 print "red led"
+sendToRoomba(blinkRed)
 time.sleep(1)
 readSerial()
+print "Request sensor"
+sendToRoomba(requestSensor)
+time.sleep(1)
+readSerial()
+
