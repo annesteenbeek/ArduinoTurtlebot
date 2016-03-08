@@ -6,6 +6,9 @@ void setup() {
   pinMode(ddPin,  OUTPUT);
   pinMode(13, OUTPUT);
   Serial.begin(57600); // PC serial
+  while (!Serial){
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
   pinSerial.begin(57600);
   startRoomba();
 
@@ -14,17 +17,16 @@ void setup() {
 void loop() {
   // Send PC data to roomba
   while (Serial.available()>0) {
-    int outByte = Serial.parseInt();
-    pinSerial.write((byte)outByte); // send received data as binary data to Roomb
-    Serial.print("Send to roomba: "); Serial.println(outByte);
+    int outData = Serial.read();
+    pinSerial.write(outData); // send received data as binary data to Roomb
+    Serial.print("Send to roomba: ");
+    Serial.println(outData);
   }
 
   // Send received data back to PC
-  while (pinSerial.available() > 0) {
-    byte inByte = pinSerial.read();
-    Serial.print("Received from roomba: ");
-    Serial.println(inByte);
-  }
+  // while (pinSerial.available() > 0) {
+  //   Serial.write(pinSerial.read());
+  // }
 }
 
 void startRoomba(){
@@ -34,4 +36,5 @@ void startRoomba(){
   digitalWrite(ddPin, LOW);
   delay(500);
   digitalWrite(ddPin, HIGH);
+  // delay(2000);
 }
