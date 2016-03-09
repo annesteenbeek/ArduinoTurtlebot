@@ -16,13 +16,14 @@ void setup() {
  
 void loop() {
   // Send PC data to roomba
-  while (Serial.available()>0) {
-    pinSerial.write(Serial.read()); // send received data as binary data to Roomba
+  if (Serial.available() > 0) {
+    pinSerial.print(Serial.read()); // send received data as binary data to Roomba
   }
 
   // Send received data back to PC
-  while (pinSerial.available() > 0) {
-    Serial.write(pinSerial.read());
+  if (pinSerial.available() > 0) {
+    Serial.print(pinSerial.read());
+
   }
 }
 

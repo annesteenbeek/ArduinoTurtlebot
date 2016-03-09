@@ -36,17 +36,24 @@ def readSerial():
     if out != '':
         print ">>" + out
 
+ROSsignal = [128, 131, 142, 6, 142, 6]
+
 time.sleep(2.9)
-print "enable full control"
-sendToRoomba(SCI)
+print "Test ROS wake up signal"
+sendToRoomba(ROSsignal)
 time.sleep(1)
 readSerial()
-print "red led"
-sendToRoomba(blinkRed)
-time.sleep(1)
-readSerial()
-print "Request sensor"
-sendToRoomba(requestSensor)
-time.sleep(1)
-readSerial()
+
+# print "enable full control"
+# sendToRoomba(SCI)
+# time.sleep(1)
+# readSerial()
+# print "red led"
+# sendToRoomba(blinkRed)
+# time.sleep(1)
+# readSerial()
+# print "Request sensor"
+# sendToRoomba(requestSensor)
+# time.sleep(1)
+# readSerial()
 
